@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FrypanScene : MonoBehaviour
 {
-   
-
     [SerializeField] private float[] judgeTime;
 
     /// <summary>
@@ -45,13 +41,17 @@ public class FrypanScene : MonoBehaviour
 
     private int score;
 
-    private float scoreRate;
+    private int scoreRate;
 
     private int loopNum;
 
     private float maxScale = 1.1f;
 
-    private float minScale = 0.5f;
+    private float minScale = 0.2f;
+
+    private const int DecisionGame = 1;
+    private const int FastScore = 200;
+    private const int PerfectScore = 500;
 
     enum FRY_STATE
     {
@@ -75,10 +75,10 @@ public class FrypanScene : MonoBehaviour
         score = 0;
         scoreRate = 0;
         allJudgeTime = judgeTime[0] + judgeTime[1] + judgeTime[2];
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < DecisionGame; i++)
         {
             //perfect
-            totalScore += scoreParam[1];
+            totalScore += PerfectScore;
         }
     }
 
@@ -86,6 +86,7 @@ public class FrypanScene : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), time);
         switch (fryState)
         {
             case (FRY_STATE.WAIT):
@@ -130,28 +131,28 @@ public class FrypanScene : MonoBehaviour
     void Judge()
     {
         //fast
-        if (time < judgeTime[0])
+        if (judgeTime[0] < time && time < judgeTime[1])
         {
             //演出
 
             //initialize
             time = 0;
             loopNum++;
+            score += FastScore;
             ChangeState(FRY_STATE.WAIT);
-            score += scoreParam[0];
             return;
         }
 
         //perfect
-        if (time < judgeTime[1])
+        if (circle.transform.localScale.x < 0.6f && 0.4f < circle.transform.localScale.x)
         {
             //演出
 
             //initialize
             time = 0;
             loopNum++;
+            score += PerfectScore;
             ChangeState(FRY_STATE.WAIT);
-            score += scoreParam[1];
             return;
         }
 
@@ -160,8 +161,8 @@ public class FrypanScene : MonoBehaviour
         //initialize
         time = 0;
         loopNum++;
-        ChangeState(FRY_STATE.WAIT);
         score += scoreParam[2];
+        ChangeState(FRY_STATE.WAIT);
         
     }
 
@@ -202,8 +203,10 @@ public class FrypanScene : MonoBehaviour
     void EndScene()
     {
         //総合評価を判定
-        scoreRate = (float)score / totalScore;
+        scoreRate = score / totalScore;
         //次のシーンに移行
-
+        ResultScript.score = score += (int)((SelectManager.nMeatCnt + SelectManager.nVegetableCnt + SelectManager.nSourceCnt) * 100);
+        Debug.Log(score);
+        SceneChangerScript.Instance.SceneChangeImmediate("result");
     }
 }

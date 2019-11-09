@@ -14,7 +14,7 @@ public class InGameScript : MonoBehaviour
     {
 
         if (sceneChanged) return;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetMouseButtonDown(0))
         {
             SceneChangerScript.Instance.SceneChangeImmediate("result");
             sceneChanged = true;

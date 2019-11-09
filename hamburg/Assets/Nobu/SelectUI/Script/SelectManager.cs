@@ -104,7 +104,8 @@ public class SelectManager : MonoBehaviour
                 if (SceneManager.GetActiveScene().name == "SourceSelectScene" && nCnt != 0)
                 {
                     nSourceCnt = nCnt;
-                    SceneManager.LoadScene("MeatSelectScene");
+                    SceneChangerScript.Instance.SceneChangeImmediate("FrypanScene");
+                    //SceneManager.LoadScene("MeatSelectScene");
                 }
                 break;
             default:

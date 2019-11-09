@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
 {
+
     #region param
     private static GameObject overlayCanvas = default;
     enum FadeMode : int
@@ -119,7 +120,6 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
         if (image.color.a > 0f)
         {
             image.color = Color.Lerp(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 0), fadeDelta / waitTime);
-            image.color = Color.Lerp(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 0),  fadeDelta / waitTime);
         }
 
         fadeDelta += Time.deltaTime;

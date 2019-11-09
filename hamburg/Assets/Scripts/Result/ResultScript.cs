@@ -5,7 +5,8 @@ public class ResultScript : MonoBehaviour
 {
     private bool sceneChanged = false;
 
-    public float score { get; set; } = 0;
+    public static int score;
+    
     [SerializeField]
     GameObject scoreText;
 
@@ -19,7 +20,7 @@ public class ResultScript : MonoBehaviour
     void Update()
     {
         if (sceneChanged) return;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetMouseButtonDown(0))
         {
             SceneChangerScript.Instance.SceneChangeImmediate("title");
             sceneChanged = true;
