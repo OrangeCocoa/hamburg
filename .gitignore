@@ -34,6 +34,7 @@ sysinfo.txt
 *.ide-shm
 
 .vs/
+Library/PackageCache/
 
 !*.dll
 
