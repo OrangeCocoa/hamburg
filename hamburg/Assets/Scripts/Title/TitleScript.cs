@@ -3,22 +3,17 @@
 public class TitleScript : MonoBehaviour
 {
     #region param
-    private bool sceneChanged = false;
+    private float beforeTrigger = 0f;
     #endregion
 
     void Awake()
     {
-        AcbManager.Instance.LoadCueSheet("Title", Star.Title.Title.TitleBGM);
+
     }
 
     void Update()
     {
-        if (sceneChanged) return;
-        if(Input.GetButtonDown("Jump"))
-        {
-            SceneChangerScript.Instance.SceneChangeImmediate("game");
-            sceneChanged = true;
-        }
+
     }
 
     void FixedUpdate()

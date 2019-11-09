@@ -26,6 +26,7 @@ public class RuntimeInitializer : MonoBehaviour
 
         var acbManager = new GameObject("AcbManager").AddComponent<AcbManager>();
         acbManager.LoadAcf();
+        acbManager.LoadCueSheet("Title", Star.Title.Title.TitleBGM);
         DontDestroyOnLoad(acbManager.gameObject);
     }
 }
