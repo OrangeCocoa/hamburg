@@ -90,6 +90,8 @@ public class Game_Manager : MonoBehaviour
                         // 最終スコア
                         m_nGameScore = m_pMixBowlComponent.GetMixScore() + m_pSelectPointComponent.GetSelectScore();
                         Debug.Log(m_nGameScore);
+                        ResultScript.score += m_nGameScore;
+                        SceneChangerScript.Instance.SceneChangeImmediate("FrypanScene");
                     }
 
                     break;

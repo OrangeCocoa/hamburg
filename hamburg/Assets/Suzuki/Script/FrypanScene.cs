@@ -205,7 +205,7 @@ public class FrypanScene : MonoBehaviour
         //総合評価を判定
         scoreRate = score / totalScore;
         //次のシーンに移行
-        ResultScript.score = score += (int)((SelectManager.nMeatCnt + SelectManager.nVegetableCnt + SelectManager.nSourceCnt) * 100);
+        ResultScript.score += score += (int)((SelectManager.nMeatCnt + SelectManager.nVegetableCnt + SelectManager.nSourceCnt) * 100);
         Debug.Log(score);
         SceneChangerScript.Instance.SceneChangeImmediate("result");
     }
