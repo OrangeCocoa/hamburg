@@ -37,4 +37,6 @@ sysinfo.txt
 
 !*.dll
 
-jga19-star/.vs/jga19-star/v16/Server/sqlite3/*
+/hamburg/.vs/
+/hamburg/Library/
+/hamburg/Temp/
