@@ -86,7 +86,7 @@ public class FrypanScene : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), time);
+        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), Time.time / 3);
         switch (fryState)
         {
             case (FRY_STATE.WAIT):
