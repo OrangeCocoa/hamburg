@@ -14,9 +14,9 @@ public class TitleScript : MonoBehaviour
     void Update()
     {
         if (sceneChanged) return;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetMouseButtonDown(0))
         {
-            SceneChangerScript.Instance.SceneChangeImmediate("FrypanScene");
+            SceneChangerScript.Instance.SceneChangeImmediate("MeatSelectScene");
             sceneChanged = true;
         }
     }

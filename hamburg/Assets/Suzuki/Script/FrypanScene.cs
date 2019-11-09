@@ -86,6 +86,7 @@ public class FrypanScene : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), time);
         switch (fryState)
         {
             case (FRY_STATE.WAIT):
@@ -137,8 +138,8 @@ public class FrypanScene : MonoBehaviour
             //initialize
             time = 0;
             loopNum++;
-            ChangeState(FRY_STATE.WAIT);
             score += FastScore;
+            ChangeState(FRY_STATE.WAIT);
             return;
         }
 
@@ -150,8 +151,8 @@ public class FrypanScene : MonoBehaviour
             //initialize
             time = 0;
             loopNum++;
-            ChangeState(FRY_STATE.WAIT);
             score += PerfectScore;
+            ChangeState(FRY_STATE.WAIT);
             return;
         }
 
@@ -160,8 +161,8 @@ public class FrypanScene : MonoBehaviour
         //initialize
         time = 0;
         loopNum++;
-        ChangeState(FRY_STATE.WAIT);
         score += scoreParam[2];
+        ChangeState(FRY_STATE.WAIT);
         
     }
 
@@ -202,10 +203,10 @@ public class FrypanScene : MonoBehaviour
     void EndScene()
     {
         //総合評価を判定
-        Debug.Log(score);
         scoreRate = score / totalScore;
         //次のシーンに移行
-        ResultScript.score = score;
+        ResultScript.score = score += (int)((SelectManager.nMeatCnt + SelectManager.nVegetableCnt + SelectManager.nSourceCnt) * 100);
+        Debug.Log(score);
         SceneChangerScript.Instance.SceneChangeImmediate("result");
     }
 }
