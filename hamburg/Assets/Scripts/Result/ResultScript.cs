@@ -5,7 +5,8 @@ public class ResultScript : MonoBehaviour
 {
     private bool sceneChanged = false;
 
-    public float score { get; set; } = 0;
+    public static int score;
+    
     [SerializeField]
     GameObject scoreText;
 

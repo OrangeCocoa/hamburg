@@ -16,7 +16,7 @@ public class TitleScript : MonoBehaviour
         if (sceneChanged) return;
         if (Input.GetButtonDown("Jump"))
         {
-            SceneChangerScript.Instance.SceneChangeImmediate("game");
+            SceneChangerScript.Instance.SceneChangeImmediate("FrypanScene");
             sceneChanged = true;
         }
     }
