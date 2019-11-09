@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Suzuki/Scene/FrypanScene.unity
-    guid: 2dc3dd6801cc47b47b0be2559c835f14
-  - enabled: 1
     path: Assets/Scenes/title.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Suzuki/Scene/FrypanScene.unity
+    guid: 2dc3dd6801cc47b47b0be2559c835f14
   - enabled: 1
     path: Assets/Scenes/result.unity
     guid: 74f0f2e76999f1c4b922480b680e8ae4
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nobu/Scenes/VegetableSelectScene.unity
     guid: 5c96bf05048309449a45041f94097fb5
+  - enabled: 1
+    path: Assets/Seita/Hamburger_sauce.unity
+    guid: 31e55b5ff509bcc40b1c71f7f52095cb
   m_configObjects: {}

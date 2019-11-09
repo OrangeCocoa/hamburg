@@ -48,7 +48,7 @@ public class FrypanScene : MonoBehaviour
     private float maxScale = 1.1f;
 
     private float minScale = 0.2f;
-
+    float timetime;
     private const int DecisionGame = 1;
     private const int FastScore = 200;
     private const int PerfectScore = 500;
@@ -69,6 +69,7 @@ public class FrypanScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timetime = 0;
         fryState = FRY_STATE.WAIT;
         ChangeScale(minScale);
         particle.Stop();
@@ -86,7 +87,9 @@ public class FrypanScene : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), Time.time / 3);
+        timetime += Time.deltaTime;
+        
+        burg.GetComponent<SpriteRenderer>().color = Color32.Lerp(new Color32(255, 255, 255, 255), new Color32(85, 76, 76, 255), timetime / 3);
         switch (fryState)
         {
             case (FRY_STATE.WAIT):

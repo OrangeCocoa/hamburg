@@ -28,6 +28,9 @@ public class Game_Manager : MonoBehaviour
     private GAME_MODE   m_mGameMode;        // ゲームモード
     private int         m_nGameScore;       // ゲームスコア
 
+    bool gameend = false; 
+
+
 
     // ==========================================================================
     //                               メンバ関数
@@ -84,14 +87,17 @@ public class Game_Manager : MonoBehaviour
                     // 更新許可
                     m_pMixBowlComponent.SetUpdateSwitch(true);
 
+                    if (gameend) return;
+
                     // ゲームが終了したら...
                     if(m_pMixBowlComponent.GetGameEnd())
                     {
                         // 最終スコア
                         m_nGameScore = m_pMixBowlComponent.GetMixScore() + m_pSelectPointComponent.GetSelectScore();
-                        Debug.Log(m_nGameScore);
+                        //Debug.Log(m_nGameScore);
                         ResultScript.score += m_nGameScore;
                         SceneChangerScript.Instance.SceneChangeImmediate("FrypanScene");
+                        gameend = true;
                     }
 
                     break;
