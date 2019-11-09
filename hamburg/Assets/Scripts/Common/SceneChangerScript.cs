@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
 {
-
     #region param
-    private GameObject overlayCanvas = default;
+    private static GameObject overlayCanvas = default;
     enum FadeMode : int
     {
         NONE = -1,
@@ -19,7 +18,6 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
     private string nextSceneName = default;
 
     public bool fadeEnd { get; private set; }
-    private bool prevFadeEnd = false;
 
     private float fadeDelta = 0f;
     private float waitTime = 1f;
@@ -42,7 +40,6 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
 
         fadeDelta = 0f;
         fadeEnd = false;
-        prevFadeEnd = false;
     }
 
     void FixedUpdate()
@@ -60,8 +57,6 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
             default:
                 break;
         }
-
-        prevFadeEnd = fadeEnd;
 
         if (!fadeEnd) return;
 
@@ -97,13 +92,12 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
 
         var canvas = Resources.Load("Prefabs/OverlayCanvas") as GameObject;
         overlayCanvas = Instantiate(canvas, new Vector3(0, 0, 100), Quaternion.identity);
-        overlayCanvas.GetComponentInChildren<Image>().color = new Color32(190, 194, 195, 0);
+        overlayCanvas.GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 0);
         overlayCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
         fadeMode = FadeMode.FADE_IN;
 
         fadeDelta = 0f;
         fadeEnd = false;
-        prevFadeEnd = false;
     }
 
     private void FadeIn()
@@ -111,7 +105,7 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
         var image = overlayCanvas.GetComponentInChildren<Image>();
         if (image.color.a < 1f)
         {
-            image.color = Color.Lerp(new Color32(190, 194, 195, 0), new Color32(190, 194, 195, 255), fadeDelta / waitTime);
+            image.color = Color.Lerp(new Color32(255, 255, 255, 0), new Color32(255, 255, 255, 255), fadeDelta / waitTime);
         }
 
         fadeDelta += Time.deltaTime;
@@ -124,7 +118,7 @@ public class SceneChangerScript : SingletonMonoBehavior<SceneChangerScript>
         var image = overlayCanvas.GetComponentInChildren<Image>();
         if (image.color.a > 0f)
         {
-            image.color = Color.Lerp(new Color32(190, 194, 195, 255), new Color32(190, 194, 195, 0),  fadeDelta / waitTime);
+            image.color = Color.Lerp(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 0),  fadeDelta / waitTime);
         }
 
         fadeDelta += Time.deltaTime;
